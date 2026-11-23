@@ -48,7 +48,7 @@ were built and tuned for Spanish.
 ## How a sentence travels
 
 ```mermaid
-flowchart LR
+flowchart TD
     MIC["USB mic"] --> WAKE["Wake word<br/>Vosk, on device"]
     WAKE --> VAD["End of speech<br/>Silero VAD, on device"]
     VAD --> STT["Speech to text<br/>grok-stt streaming"]

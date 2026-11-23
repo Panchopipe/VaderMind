@@ -49,7 +49,7 @@ propia se construyeron y ajustaron para el español.
 ## Cómo viaja una frase
 
 ```mermaid
-flowchart LR
+flowchart TD
     MIC["Micrófono USB"] --> WAKE["Palabra de activación<br/>Vosk, en el equipo"]
     WAKE --> VAD["Fin del habla<br/>Silero VAD, en el equipo"]
     VAD --> STT["Voz a texto<br/>grok-stt en streaming"]
