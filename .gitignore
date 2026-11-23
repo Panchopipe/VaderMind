@@ -1,0 +1,28 @@
+# Keys and local settings
+.env
+.venv/
+__pycache__/
+*.pyc
+
+# Audio produced while running
+*.wav
+*.mp3
+
+# Logins, TV pairing and timers (one copy per device)
+.spotify_token.json
+.spotify_playlist_aliases.json
+.lg_tv_client_key
+.lg_tv_schedules.json
+
+# One folder per home, and the last one used
+profiles/
+.perfil_activo
+
+# Models are downloaded or trained separately (see the README)
+models/**/*.onnx
+models/vosk/
+
+# Runtime and measurement output
+logs/
+.runtime_cache/
+evaluations/results/

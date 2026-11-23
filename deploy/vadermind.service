@@ -1,0 +1,31 @@
+# VaderMind manos libres: arranca al encender la Raspberry, sin teclado ni laptop.
+#
+# Instalar (en la Pi, desde ~/VaderMind):
+#   sudo cp deploy/vadermind.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now vadermind
+# Ver lo que hace:     journalctl -u vadermind -f
+# Detener (para medir el micro o probar a mano):  sudo systemctl stop vadermind
+# Que no arranque mas al encender:                sudo systemctl disable vadermind
+
+[Unit]
+Description=VaderMind manos libres (Oye Vader)
+# Pide la red pero no la espera para partir: Vader carga sus modelos mientras
+# el Wi-Fi conecta y espera la red el mismo (--esperar-red) justo antes de las
+# pupilas tenues. Con After=network-online.target cargaba recien con red y el
+# arranque en frio tardaba ~7 s mas (medido el 20/11/2026).
+Wants=network-online.target
+After=sound.target
+
+[Service]
+Type=simple
+User=vader
+WorkingDirectory=/home/vader/VaderMind
+ExecStart=/home/vader/VaderMind/.venv/bin/python main.py --manos-libres --esperar-red
+Environment=PYTHONUNBUFFERED=1
+# Si se cae (micro desconectado, red caida al arrancar), reintenta.
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

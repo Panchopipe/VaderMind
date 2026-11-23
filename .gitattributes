@@ -1,0 +1,5 @@
+# Shell scripts run on the Raspberry Pi: a Windows checkout must keep LF endings,
+# or `sh` fails there with "$'\r': command not found".
+*.sh text eol=lf
+# systemd units are copied to the Pi as they are: same rule.
+*.service text eol=lf
